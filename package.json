@@ -1,6 +1,6 @@
 {
   "name": "@kavrillon/web-q5y",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Perform web audits via Jest.",
   "main": "index.html",
   "scripts": {
