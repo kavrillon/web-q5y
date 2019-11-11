@@ -1,13 +1,13 @@
 const fileMethods = require('./test/utils/file');
-const focommonrc = fileMethods.getRCConf('./.focommonrc');
+const config = fileMethods.getRCConf('./.q5yrc');
 
 module.exports = {
   preset: 'jest-puppeteer',
   rootDir: '.',
   testMatch: ['<rootDir>/test/e2e/*.spec.js'],
-  testURL: `${focommonrc.url}:${focommonrc.port}`,
+  testURL: `${config.url}:${config.port}`,
   haste: {
-    providesModuleNodeModules: ['@kavrillon/frontend-common'],
+    providesModuleNodeModules: ['@kavrillon/web-q5y']
   },
-  testPathIgnorePatterns: [],
+  testPathIgnorePatterns: []
 };

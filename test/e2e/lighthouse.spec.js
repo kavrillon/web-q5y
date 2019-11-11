@@ -2,8 +2,8 @@
 
 const commonMethods = require('../utils/lighthouse');
 const fileMethods = require('../utils/file');
-const focommonrc = fileMethods.getRCConf('./.focommonrc');
-const URL = `${focommonrc.url}:${focommonrc.port}`;
+const config = fileMethods.getRCConf('./.q5yrc');
+const URL = `${config.url}:${config.port}`;
 
 let lhr;
 
@@ -14,7 +14,7 @@ const THRESHOLD_BEST_PRACTISES = 100; // HTTP/2 not available on local testing +
 // const THRESHOLD_PWA = 100; // TODO Include lazy loading for pictures
 const THRESHOLD_SEO = 100;
 
-focommonrc.routes.forEach(route => {
+config.routes.forEach(route => {
   describe(`Lighthouse Audit: ${route}`, () => {
     beforeAll(async () => {
       jest.setTimeout(30000);
@@ -24,7 +24,10 @@ focommonrc.routes.forEach(route => {
 
     // General accessibility overview score
     it('passes an accessibility audit', async () => {
-      const accessibilityScore = await commonMethods.getLighthouseResult(lhr, 'accessibility');
+      const accessibilityScore = await commonMethods.getLighthouseResult(
+        lhr,
+        'accessibility'
+      );
       // Tester can set their own thresholds for pass marks
       expect(accessibilityScore).toBeGreaterThanOrEqual(THRESHOLD_A11Y);
     });
@@ -41,9 +44,14 @@ focommonrc.routes.forEach(route => {
 
     // General best practice for websites overview score
     it('passes a best practice audit', async () => {
-      const bestPracticeScore = await commonMethods.getLighthouseResult(lhr, 'bestPractices');
+      const bestPracticeScore = await commonMethods.getLighthouseResult(
+        lhr,
+        'bestPractices'
+      );
       // Tester can set their own thresholds for pass marks
-      expect(bestPracticeScore).toBeGreaterThanOrEqual(THRESHOLD_BEST_PRACTISES);
+      expect(bestPracticeScore).toBeGreaterThanOrEqual(
+        THRESHOLD_BEST_PRACTISES
+      );
     });
 
     // These checks validate the aspects of a Progressive Web App,
@@ -84,13 +92,19 @@ focommonrc.routes.forEach(route => {
 
     // Assistive technologies, like screen readers, can't interpret ARIA attributes with invalid names
     it('contains valid ARIA attributes', async () => {
-      const ariaAttributesCheck = await commonMethods.getResult(lhr, 'ariaAttributesCorrect');
+      const ariaAttributesCheck = await commonMethods.getResult(
+        lhr,
+        'ariaAttributesCorrect'
+      );
       expect(ariaAttributesCheck).toEqual('Pass');
     });
 
     // Assistive technologies, like screen readers, can't interpret ARIA attributes with invalid values
     it('contains valid values for all ARIA attributes', async () => {
-      const ariaAttributeValuesCheck = await commonMethods.getResult(lhr, 'ariaAttributeValuesCorrect');
+      const ariaAttributeValuesCheck = await commonMethods.getResult(
+        lhr,
+        'ariaAttributeValuesCorrect'
+      );
       expect(ariaAttributeValuesCheck).toEqual('Pass');
     });
 
@@ -104,14 +118,20 @@ focommonrc.routes.forEach(route => {
     // Tabbing through the page follows the visual layout.
     // Users cannot focus elements that are offscreen
     it('has a logical tab order for assitive technology use', async () => {
-      const logicalTabOrderCheck = await commonMethods.getResult(lhr, 'logicalTabOrder');
+      const logicalTabOrderCheck = await commonMethods.getResult(
+        lhr,
+        'logicalTabOrder'
+      );
       expect(logicalTabOrderCheck).toEqual('Pass');
     });
 
     // Some third-party scripts may contain known security vulnerabilities
     // that are easily identified and exploited by attackers
     it('contains no known vulnerable libraries', async () => {
-      const vulnerabilities = await commonMethods.getResult(lhr, 'vulnerabilities');
+      const vulnerabilities = await commonMethods.getResult(
+        lhr,
+        'vulnerabilities'
+      );
       expect(vulnerabilities).toEqual('Pass');
     });
   });
