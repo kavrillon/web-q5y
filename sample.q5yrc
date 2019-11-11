@@ -1,6 +1,6 @@
 {
   "command": "yarn build && yarn start",
-  "loadedSelector": null,
+  "loadedSelector": "[data-loaded=true]",
   "url": "http://localhost",
   "port": "3000",
   "routes": ["/"],
