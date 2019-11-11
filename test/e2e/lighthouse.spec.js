@@ -18,6 +18,11 @@ config.routes.forEach(route => {
   describe(`Lighthouse Audit: ${route}`, () => {
     beforeAll(async () => {
       jest.setTimeout(30000);
+
+      await page.goto(`${URL}${route}`);
+      if (config.loadedSelector !== null) {
+        await page.waitFor('[data-loaded=true]');
+      }
       // kick off a Lighthouse audit on the above url
       lhr = await commonMethods.lighthouseAudit(browser, URL + route);
     });
