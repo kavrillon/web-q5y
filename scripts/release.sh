@@ -87,15 +87,8 @@ echo -e "${BOLD}##-- Deploying the Github tag --##${NC}"
 echo ""
 COMMITS=`git log --pretty=format:"%s" ${OLD_TAG}..master` # Get all commits to release (with the last one)
 
-git commit -m "chore(): generate files for version ${NEW_TAG}"
 git tag ${NEW_TAG} -m "${COMMITS}"
 git push origin ${NEW_TAG}
-
- # Removing commit for dist files
-git reset --hard HEAD~1
-
-# Deploy generated release
-npm publish
 
 # Go back to previous branch
 git checkout $BRANCH
