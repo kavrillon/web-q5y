@@ -4,7 +4,7 @@
   "description": "Perform web audits via Jest.",
   "main": "index.html",
   "scripts": {
-    "tag": "bash scripts/tag.sh",
+    "release-tag": "bash scripts/tag.sh",
     "test:e2e": "TEST_MODE=e2e jest test --runInBand --detectOpenHandles"
   },
   "repository": {
