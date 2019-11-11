@@ -1,0 +1,6 @@
+{
+  "command": "yarn build && yarn start",
+  "url": "http://localhost",
+  "port": 3000",
+  "routes": ["/"]
+}

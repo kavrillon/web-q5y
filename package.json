@@ -1,0 +1,28 @@
+{
+  "name": "@kavrillon/web-q5y",
+  "version": "0.0.1",
+  "description": "Perform web audits via Jest.",
+  "main": "index.html",
+  "scripts": {
+    "test:e2e": "TEST_MODE=e2e jest test --runInBand --detectOpenHandles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kavrillon/web-q5y.git"
+  },
+  "author": "kevin@avrillon.mr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kavrillon/web-q5y/issues"
+  },
+  "homepage": "https://github.com/kavrillon/web-q5y#readme",
+  "dependencies": {
+    "@babel/core": "^7.6.0",
+    "babel-jest": "^24.9.0",
+    "fs": "^0.0.1-security",
+    "jest": "^24.9.0",
+    "jest-puppeteer": "^4.3.0",
+    "lighthouse": "^5.4.0",
+    "puppeteer": "^1.20.0"
+  }
+}
