@@ -3,5 +3,13 @@
   "loadedSelector": null,
   "url": "http://localhost",
   "port": "3000",
-  "routes": ["/"]
+  "routes": ["/"],
+  "thresholds": {
+    "a11y": 100,
+    "bestPractises": 100,
+    "perfs": 100,
+    "pageSpeed": 100,
+    "pwa": 100,
+    "seo": 100
+  }
 }

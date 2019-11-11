@@ -7,13 +7,6 @@ const URL = `${config.url}:${config.port}`;
 
 let lhr;
 
-const THRESHOLD_A11Y = 100; // TO THE TOP
-const THRESHOLD_BEST_PRACTISES = 100; // HTTP/2 not available on local testing + HTTPS not available
-// const THRESHOLD_PERF = 100; // Inconsistencies between local & CI, due to network differences
-// const THRESHOLD_PAGESPEED = 100; // Inconsistencies bewteen local & Travis, due to network differences
-// const THRESHOLD_PWA = 100; // TODO Include lazy loading for pictures
-const THRESHOLD_SEO = 100;
-
 config.routes.forEach(route => {
   describe(`Lighthouse Audit: ${route}`, () => {
     beforeAll(async () => {
@@ -28,50 +21,67 @@ config.routes.forEach(route => {
     });
 
     // General accessibility overview score
-    it('passes an accessibility audit', async () => {
-      const accessibilityScore = await commonMethods.getLighthouseResult(
-        lhr,
-        'accessibility'
-      );
-      // Tester can set their own thresholds for pass marks
-      expect(accessibilityScore).toBeGreaterThanOrEqual(THRESHOLD_A11Y);
-    });
+    if (config.thresholds.a11y > 0) {
+      it('passes an accessibility audit', async () => {
+        const accessibilityScore = await commonMethods.getLighthouseResult(
+          lhr,
+          'accessibility'
+        );
+        // Tester can set their own thresholds for pass marks
+        expect(accessibilityScore).toBeGreaterThanOrEqual(
+          config.thresholds.a11y
+        );
+      });
+    }
 
     // General performance overview score
-    /* it("passes a performance audit", async () => {
-      const performanceScore = await commonMethods.getLighthouseResult(
-        lhr,
-        "performance"
-      );
-      // Tester can set their own thresholds for pass marks
-      expect(performanceScore).toBeGreaterThan(THRESHOLD_PERF);
-    }); */
+    if (config.thresholds.perfs > 0) {
+      it('passes a performance audit', async () => {
+        const performanceScore = await commonMethods.getLighthouseResult(
+          lhr,
+          'performance'
+        );
+        // Tester can set their own thresholds for pass marks
+        expect(performanceScore).toBeGreaterThan(config.thresholds.perfs);
+      });
+    }
 
     // General best practice for websites overview score
-    it('passes a best practice audit', async () => {
-      const bestPracticeScore = await commonMethods.getLighthouseResult(
-        lhr,
-        'bestPractices'
-      );
-      // Tester can set their own thresholds for pass marks
-      expect(bestPracticeScore).toBeGreaterThanOrEqual(
-        THRESHOLD_BEST_PRACTISES
-      );
-    });
+    if (config.thresholds.bestPractises > 0) {
+      it('passes a best practice audit', async () => {
+        const bestPracticeScore = await commonMethods.getLighthouseResult(
+          lhr,
+          'bestPractices'
+        );
+        // Tester can set their own thresholds for pass marks
+        expect(bestPracticeScore).toBeGreaterThanOrEqual(
+          config.thresholds.bestPractises
+        );
+      });
+    }
 
     // These checks validate the aspects of a Progressive Web App,
     // as specified by the baseline [PWA Checklist]
-    /* it('passes a Progressive Web App audit', async () => {
-      const progressiveWebAppScore = await commonMethods.getLighthouseResult(lhr, 'progressiveWebApp');
-      // Tester can set their own thresholds for pass marks
-      expect(progressiveWebAppScore).toBeGreaterThanOrEqual(THRESHOLD_PWA);
-    }); */
+    if (config.thresholds.pwa > 0) {
+      it('passes a Progressive Web App audit', async () => {
+        const progressiveWebAppScore = await commonMethods.getLighthouseResult(
+          lhr,
+          'progressiveWebApp'
+        );
+        // Tester can set their own thresholds for pass marks
+        expect(progressiveWebAppScore).toBeGreaterThanOrEqual(
+          config.thresholds.pwa
+        );
+      });
+    }
 
     // These checks ensure that your page is optimized for search engine results ranking.
-    it('passes an SEO audit', async () => {
-      const SEOScore = await commonMethods.getLighthouseResult(lhr, 'seo');
-      expect(SEOScore).toBeGreaterThanOrEqual(THRESHOLD_SEO);
-    });
+    if (config.thresholds.seo > 0) {
+      it('passes an SEO audit', async () => {
+        const SEOScore = await commonMethods.getLighthouseResult(lhr, 'seo');
+        expect(SEOScore).toBeGreaterThanOrEqual(config.thresholds.seo);
+      });
+    }
 
     // Low-contrast text is difficult or impossible for many users to read
     it('passes a contrast check', async () => {
@@ -87,13 +97,17 @@ config.routes.forEach(route => {
     });
 
     // Speed Index shows how quickly the contents of a page are visibly populated.
-    /* it("passes the set threshold for page load speed", async () => {
-      const pageSpeedScore = await commonMethods.getLighthouseResult(
-        lhr,
-        "pageSpeed"
-      );
-      expect(pageSpeedScore).toBeGreaterThanOrEqual(THRESHOLD_PAGESPEED);
-    }); */
+    if (config.thresholds.pageSpeed > 0) {
+      it('passes the set threshold for page load speed', async () => {
+        const pageSpeedScore = await commonMethods.getLighthouseResult(
+          lhr,
+          'pageSpeed'
+        );
+        expect(pageSpeedScore).toBeGreaterThanOrEqual(
+          config.thresholds.pageSpeed
+        );
+      });
+    }
 
     // Assistive technologies, like screen readers, can't interpret ARIA attributes with invalid names
     it('contains valid ARIA attributes', async () => {
