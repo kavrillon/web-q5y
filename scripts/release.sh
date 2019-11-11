@@ -79,7 +79,7 @@ echo -e "${BOLD}##-- Upgrading Project version (${OLD_TAG} -> ${NEW_TAG}) --##${
 
 # Create a commit for release
 git add package.json
-git commit -m "chore(): release new version ${NEW_TAG}"
+git commit -m "chore: release v.${NEW_TAG}"
 git push origin master
 
 echo ""
