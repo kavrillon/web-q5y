@@ -1,4 +1,4 @@
-name: Github Package
+name: NPM Package
 
 on:
   release:
@@ -25,3 +25,5 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: "@kavrillon"
       - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
