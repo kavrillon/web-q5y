@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "release-tag": "bash scripts/tag.sh",
-    "test:e2e": "TEST_MODE=e2e jest test --runInBand --detectOpenHandles"
+    "test": "TEST_MODE=e2e jest test --runInBand --detectOpenHandles --verbose"
   },
   "repository": {
     "type": "git",
