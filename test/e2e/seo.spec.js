@@ -6,7 +6,7 @@ const config = fileMethods.getRCConf('./.q5yrc');
 const URL = process.env.Q5Y_URL ? process.env.Q5Y_URL : `${config.url}:${config.port}`;
 
 config.routes.forEach(route => {
-  describe(`SEO Audit: ${URL}${route}`, () => {
+  describe(`SEO Audit: ${route}`, () => {
     beforeAll(async () => {
       jest.setTimeout(30000);
       await page.goto(`${URL}${route}`);

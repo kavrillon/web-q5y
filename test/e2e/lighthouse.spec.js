@@ -8,7 +8,7 @@ const URL = process.env.Q5Y_URL ? process.env.Q5Y_URL : `${config.url}:${config.
 let lhr;
 
 config.routes.forEach(route => {
-  describe(`Lighthouse Audit: ${URL}/${route}`, () => {
+  describe(`Lighthouse Audit: ${route}`, () => {
     beforeAll(async () => {
       jest.setTimeout(30000);
 
