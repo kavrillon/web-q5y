@@ -1,4 +1,4 @@
-# Web Q5Y test
+# Web Q5Y Checker
 
 Testing: SEO audit, Lighthouse audit with Jest
 
