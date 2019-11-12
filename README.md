@@ -10,7 +10,7 @@ Testing: SEO audit, Lighthouse audit with Jest
 ```
   "scripts": {
     ...
-    "test:e2e": "JEST_PUPPETEER_CONFIG=node_modules/@kavrillon/web-q5y/jest-puppeteer.config.js jest test --runInBand --detectOpenHandles --config=node_modules/@kavrillon/web-q5y/jest.config.js"
+    "test:e2e": "JEST_PUPPETEER_CONFIG=node_modules/@kavrillon/web-q5y/jest-puppeteer.config.js jest test --runInBand --detectOpenHandles --verbose --config=node_modules/@kavrillon/web-q5y/jest.config.js"
   },
 ```
 
