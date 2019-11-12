@@ -5,13 +5,13 @@ const config = fileMethods.getRCConf('./.q5yrc');
 let puppeteer = {
   launch: DEBUG_MODE
     ? {
-        headless: true,
-        slowMo: 100
-      }
+      headless: true,
+      slowMo: 100
+    }
     : {}
 };
 
-if (config.command && config.command.length > 0) {
+if (!process.env.Q5Y_URL && config.command && config.command.length > 0) {
   puppeteer.server = {
     command: config.command,
     port: config.port,

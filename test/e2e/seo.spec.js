@@ -10,7 +10,7 @@ config.routes.forEach(route => {
     beforeAll(async () => {
       jest.setTimeout(30000);
       await page.goto(`${URL}${route}`);
-      if (config.loadedSelector !== null) {
+      if (typeof config.loadedSelector !== 'undefined' && config.loadedSelector !== null) {
         await page.waitFor('[data-loaded=true]');
       }
     });
