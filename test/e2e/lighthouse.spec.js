@@ -3,12 +3,12 @@
 const commonMethods = require('../utils/lighthouse');
 const fileMethods = require('../utils/file');
 const config = fileMethods.getRCConf('./.q5yrc');
-const URL = `${config.url}:${config.port}`;
+const URL = process.env.Q5Y_URL ? process.env.Q5Y_URL : `${config.url}:${config.port}`;
 
 let lhr;
 
 config.routes.forEach(route => {
-  describe(`Lighthouse Audit: ${route}`, () => {
+  describe(`Lighthouse Audit: ${URL}/${route}`, () => {
     beforeAll(async () => {
       jest.setTimeout(30000);
 

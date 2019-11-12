@@ -3,10 +3,10 @@
 const i18nMethods = require('../utils/i18n');
 const fileMethods = require('../utils/file');
 const config = fileMethods.getRCConf('./.q5yrc');
-const URL = `${config.url}:${config.port}`;
+const URL = process.env.Q5Y_URL ? process.env.Q5Y_URL : `${config.url}:${config.port}`;
 
 config.routes.forEach(route => {
-  describe(`SEO Audit: ${route}`, () => {
+  describe(`SEO Audit: ${URL}${route}`, () => {
     beforeAll(async () => {
       jest.setTimeout(30000);
       await page.goto(`${URL}${route}`);
