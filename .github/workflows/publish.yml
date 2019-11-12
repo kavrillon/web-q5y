@@ -14,7 +14,7 @@ jobs:
           node-version: 12
       - run: echo 'needs some tests'
 
-  publish-gpr:
+  publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
