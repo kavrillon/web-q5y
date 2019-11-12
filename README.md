@@ -4,12 +4,8 @@ Testing: SEO audit, Lighthouse audit with Jest
 
 ## Installation
 
-- `npm add @kavrillon/web-q5y` or `yarn add @kavrillon/web-q5y`
--
-
-### Testing Conf
-
-1. In your `package.json`, add a new script:
+1. `npm add @kavrillon/web-q5y` or `yarn add @kavrillon/web-q5y`
+2. Add the `test:e2e` command in your `package.json`:
 
 ```
   "scripts": {
@@ -18,6 +14,23 @@ Testing: SEO audit, Lighthouse audit with Jest
   },
 ```
 
-2. Create a conf file at the root of your app named `.q5yrc`.
+3. Create a conf file at the root of your app named `.q5yrc`, and copy/paste the content of the `sample.q5yrc` file. This file will contain all your testing conf.
 
-Copy the content in `sample.q5yrc` in your file, and customize the url and routes you want to test.
+### Testing Conf
+
+- `command`: the command that will launch the server. If not provided, no server will be launched, it will only listen for the given url.
+- `loadedSelector`: if provided, we will wait for this selector existence before launching tests. It is useful for testing SPAs, as the content is generated clientside.
+- `url`: the host url to test
+- `port`: the port to test
+- `routes`: array of the routes to test (do not put the host nor the port)
+- `thresholds`: for Lighthouse audit, minimum percentage to make test pass (for each category).
+
+### Tests done
+
+#### SEO Audit
+
+Check presence of meta title, description, headings, etc.
+
+#### Lighthouse Audit
+
+Pass a Lighthouse Audit via Puppeteer (a11y, perfs, best practises, seo, page speed, pwa, etc.)
